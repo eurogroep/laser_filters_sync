@@ -309,17 +309,19 @@ protected:
 
     for (auto parameter : parameters)
     {
-      if(parameter.get_name() == "polygon"&& parameter.get_type() == rclcpp::ParameterType::PARAMETER_STRING){
+      if(logging_interface_ != nullptr)
+          RCLCPP_INFO_STREAM(logging_interface_->get_logger(), "Update parameter " << parameter.get_name().c_str()<< " to "<<parameter);
+      if(parameter.get_name() == param_prefix_+"polygon"&& parameter.get_type() == rclcpp::ParameterType::PARAMETER_STRING){
         std::string polygon_string = parameter.as_string();
         polygon_ = makePolygonFromString(polygon_string, polygon_);
       }
-      else if(parameter.get_name() == "polygon_frame" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_STRING){
+      else if(parameter.get_name() == param_prefix_+"polygon_frame" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_STRING){
         polygon_frame_ = parameter.as_string();
       }
-      else if(parameter.get_name() == "invert" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_BOOL){
+      else if(parameter.get_name() == param_prefix_+"invert" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_BOOL){
         invert_filter_ = parameter.as_bool();
       }
-      else if(parameter.get_name() == "polygon_padding" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE){
+      else if(parameter.get_name() == param_prefix_+"polygon_padding" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE){
         polygon_padding_ = parameter.as_double();
       }
       else{
