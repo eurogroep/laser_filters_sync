@@ -196,7 +196,7 @@ public:
     for (auto parameter : parameters)
     {
       if(logging_interface_ != nullptr)
-          RCLCPP_INFO_STREAM(logging_interface_->get_logger(), "Update parameter " << parameter.get_name().c_str()<< " to "<<parameter);
+          RCLCPP_DEBUG_STREAM(logging_interface_->get_logger(), "Update parameter " << parameter.get_name().c_str()<< " to "<<parameter);
       if(parameter.get_name() == param_prefix_+"min_angle"&& parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE)
           min_angle_ = parameter.as_double();
       else if(parameter.get_name() == param_prefix_+"max_angle" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE)

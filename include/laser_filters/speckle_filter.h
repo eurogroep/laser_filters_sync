@@ -256,7 +256,7 @@ public:
       for (auto parameter : parameters)
       {
         if(logging_interface_ != nullptr)
-          RCLCPP_INFO_STREAM(logging_interface_->get_logger(), "Update parameter " << parameter.get_name().c_str()<< " to "<<parameter);
+          RCLCPP_DEBUG_STREAM(logging_interface_->get_logger(), "Update parameter " << parameter.get_name().c_str()<< " to "<<parameter);
         if(parameter.get_name() == param_prefix_+"filter_type"&& parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER)
             filter_type = parameter.as_int();
         else if(parameter.get_name() == param_prefix_+"max_range" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE)
