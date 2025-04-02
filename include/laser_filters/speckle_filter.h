@@ -256,14 +256,14 @@ public:
       for (auto parameter : parameters)
       {
         if(logging_interface_ != nullptr)
-          RCLCPP_INFO_STREAM(logging_interface_->get_logger(), "Update parameter " << parameter.get_name().c_str()<< " to "<<parameter);
-        if(parameter.get_name() == "filter_type"&& parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER)
+          RCLCPP_DEBUG_STREAM(logging_interface_->get_logger(), "Update parameter " << parameter.get_name().c_str()<< " to "<<parameter);
+        if(parameter.get_name() == param_prefix_+"filter_type"&& parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER)
             filter_type = parameter.as_int();
-        else if(parameter.get_name() == "max_range" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE)
+        else if(parameter.get_name() == param_prefix_+"max_range" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE)
             max_range = parameter.as_double();
-        else if(parameter.get_name() == "max_range_difference" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE)
+        else if(parameter.get_name() == param_prefix_+"max_range_difference" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_DOUBLE)
             max_range_difference = parameter.as_double();
-        else if(parameter.get_name() == "filter_window" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER)
+        else if(parameter.get_name() == param_prefix_+"filter_window" && parameter.get_type() == rclcpp::ParameterType::PARAMETER_INTEGER)
             filter_window = parameter.as_int();
         else
           if(logging_interface_ != nullptr) RCLCPP_WARN(logging_interface_->get_logger(), "Unknown parameter");
